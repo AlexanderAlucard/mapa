@@ -12,9 +12,16 @@
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
     integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
     crossorigin=""></script>
-    <style>#map { height: 350px; }</style>
+    <style>
+      #map {
+        width: 100%; 
+        height: 100vh; 
+      }
+    </style>
     <title>Mapa</title>
 </head>
+
+
 <body>
     
    
@@ -22,13 +29,25 @@
     
     
 </body>
+
+
 <script>
-    const map = L.map("map");
+    const map = L.map("map",{
+      maxZoom: 18,
+      minZoom: 16,
+      maxBounds:[
+          //south west
+          [-0.010168, -51.089016],
+          //north east
+          [0.002328, -51.081824]
+        ],
+    });
       // Initializes map
-      map.setView([-0.002893, -51.083855], 18);
+      map.setView([-0.002893, -51.083855], 17);
+    
       // Sets initial coordinates and zoom level
       L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        maxZoom: 19,
+        
         attribution:
           '© <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
       }).addTo(map);
@@ -58,6 +77,8 @@
       }
 
       map.on("click", addMarker);
+
+      
       
     </script>
   </body>
